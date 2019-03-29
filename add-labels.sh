@@ -11,11 +11,18 @@ URI=https://api.github.com
 API_VERSION=v3
 API_HEADER="Accept: application/vnd.github.${API_VERSION}+json"
 AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
-BODY="{\"labels\":[$*]}"
+
+labels=""
+for var in "$@"
+do
+ labels=$labels"$var"','
+done
+all_labels=${labels%?}
+BODY="{\"labels\":[${all_labels}]}"
+
+echo $BODY
 
 issue_url=$(jq --raw-output .pull_request.issue_url "$GITHUB_EVENT_PATH")
-
-echo $*
 
 curl -XPOST -fsSL \
 	-H "${AUTH_HEADER}" \
