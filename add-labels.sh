@@ -16,10 +16,10 @@ pr_number=$(jq --raw-output .pull_request.id "$GITHUB_EVENT_PATH")
 owner=$(jq --raw-output .pull_request.head.repo.owner.login "$GITHUB_EVENT_PATH")
 repo=$(jq --raw-output .pull_request.head.repo.name "$GITHUB_EVENT_PATH")
 
-curl -XGET -fsSL \
+curl -XPOST -fsSL \
 	-H "${AUTH_HEADER}" \
 	-H "${API_HEADER}" \
-	-d "[$*]"
+	-d "[$*]" \
 	"${URI}/repos/${owner}/${repo}/issues/${pr_number}/labels"
 
 exit 0
