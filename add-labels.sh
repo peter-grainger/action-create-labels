@@ -11,7 +11,7 @@ URI=https://api.github.com
 API_VERSION=v3
 API_HEADER="Accept: application/vnd.github.${API_VERSION}+json"
 AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
-BODY='{"labels":["squad whiskey", "Pending QA", "Pending Review"]}'
+BODY="{\"labels\":[$*]}"
 
 issue_url=$(jq --raw-output .pull_request.issue_url "$GITHUB_EVENT_PATH")
 
