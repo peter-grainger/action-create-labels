@@ -11,14 +11,7 @@ URI=https://api.github.com
 API_VERSION=v3
 API_HEADER="Accept: application/vnd.github.${API_VERSION}+json"
 AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
-
-labels=""
-for var in "$@"
-do
- labels=${labels}\"${var}\",
-done
-all_labels=${labels%?}
-BODY="{\"labels\":[${all_labels}]}"
+BODY="{\"labels\":[$*]}"
 
 echo $BODY
 
