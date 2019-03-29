@@ -15,7 +15,7 @@ AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 labels=""
 for var in "$@"
 do
- labels=$labels"$var"','
+ labels=${labels}\"${var}\",
 done
 all_labels=${labels%?}
 BODY="{\"labels\":[${all_labels}]}"

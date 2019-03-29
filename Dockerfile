@@ -14,4 +14,4 @@ RUN	apk add --no-cache \
 
 COPY add-labels.sh /usr/bin/add-labels.sh
 
-ENTRYPOINT ["/bin/bash", "-c", "add-labels.sh"]
+ENTRYPOINT ["add-labels.sh"]
