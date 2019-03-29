@@ -18,7 +18,13 @@ AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 #  labels=${labels}\"${var}\",
 # done
 # all_labels=${labels%?}
-BODY="{\"labels\":[${*//\" \"/\", \"}]}"
+args=$*
+echo $args
+
+labels="${args//\" \"/\", \"}"
+echo $labels
+
+BODY="{\"labels\":[${labels}]}"
 
 echo $BODY
 echo $*
