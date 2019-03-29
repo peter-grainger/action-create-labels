@@ -1,0 +1,8 @@
+version: '3'
+services:
+  action: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      GITHUB_TOKEN: ad-this
